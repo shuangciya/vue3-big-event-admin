@@ -3,7 +3,9 @@
 </script>
 
 <template>
-<div>个人详情</div>
+<page-container title="基本资料">
+  
+</page-container>
 </template>
 
 <style scoped>

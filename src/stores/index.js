@@ -9,4 +9,4 @@ export default pinia
 // import { useCounterStore } from "./counter";
 // export {useCounterStore}
 // 等价于
-export * from './user'//将user模块下的所有按需导出
+export * from './modules/user'//将user模块下的所有按需导出
