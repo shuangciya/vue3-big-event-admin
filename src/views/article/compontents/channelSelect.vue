@@ -9,11 +9,17 @@ const getChannelList = async() => {
 }
 getChannelList()
 const modelValue = defineModel({type:[Number,String]})
+defineProps({
+  width:{
+    type: String
+  }
+})
 console.log(modelValue);
 </script>
 
 <template>
-  <el-select v-model="modelValue">
+  <!-- :style="{ width:width } 对象属性名和变量名相同 可简写  -->
+  <el-select v-model="modelValue" :style="{ width }">
     <el-option v-for="item in channelList" :key="item.id" :label="item.cate_name" :value="item.id"></el-option>
   </el-select>
 </template>

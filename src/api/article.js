@@ -21,7 +21,30 @@ export const artGetManageService = (params) => {
   })
 }
 
+//添加文章管理
+// 注意：data需要是一个formData格式的对象
+export const artPublishService = (data) => {
+  return request.post('/my/article/add',data)
+}
+
+// 获取文章管理详情
+export const artGetDetailService = (id) => {
+  return request.get('/my/article/info',{
+    params: {
+      id
+    }
+  })
+}
+
+// 编辑文章管理
+export const artEditService = (data) => request.put('/my/article/info',data)
+
 // 删除文章管理
 export const artDelManageService = (id) => request.delete('/my/article/info',{
   params:{id}
 })
+
+// put post 直接写参数
+// get delect 需{params: 写参数}
+
+

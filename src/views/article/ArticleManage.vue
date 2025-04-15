@@ -60,7 +60,7 @@ const onCurrentChange = (page) => {
   // 基于当前页重新渲染数据
   getArticleList()
 }
-
+ 
 const articleEditRef = ref()
 //发布文章
 const onAddArticle = () => {
@@ -88,6 +88,17 @@ const onDelArticle = async (row) => {
     getArticleList()
 }
 
+// 添加或者编辑 成功的回调
+const onSuccess = (type) => {
+  if(type === 'add') {
+    // 如果是添加，最好渲染最后一页
+    // 编辑，从当前页渲染
+    const lastPage = Math.ceil((total.value + 1) / params.value.pagesize)
+    // 更新成最大页码数，再渲染
+    params.value.pagenum = lastPage
+  }
+  getArticleList()
+}
 </script>
 
 <template>
@@ -169,16 +180,15 @@ const onDelArticle = async (row) => {
   />
 
   <!-- 抽屉 -->
-  <article-edit ref="articleEditRef"></article-edit>
+  <article-edit ref="articleEditRef" @success="onSuccess"></article-edit>
 </page-container>
 </template>
 
 <style scoped>
-.demo-form-inline .el-input {
+ .demo-form-inline .el-input {
   --el-input-width: 220px;
 }
-
-.demo-form-inline .el-select {
+ .demo-form-inline .el-select {
   --el-select-width: 220px;
-}
+ }
 </style>
