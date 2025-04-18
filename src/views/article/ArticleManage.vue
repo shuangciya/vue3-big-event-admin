@@ -4,6 +4,7 @@ import { artGetManageService,artDelManageService } from "@/api/article";
 import { ref } from "vue";
 import channelSelect from "./compontents/channelSelect.vue";
 import articleEdit from "./compontents/articleEdit.vue";
+import articleDetail from "./compontents/articleDetail.vue";
 import { formatTime } from "@/utils/format";
 import { ElMessageBox,ElMessage } from "element-plus";
 const articleList  = ref([])  //文章列表
@@ -60,7 +61,7 @@ const onCurrentChange = (page) => {
   // 基于当前页重新渲染数据
   getArticleList()
 }
- 
+
 const articleEditRef = ref()
 //发布文章
 const onAddArticle = () => {
@@ -98,6 +99,11 @@ const onSuccess = (type) => {
     params.value.pagenum = lastPage
   }
   getArticleList()
+}
+
+const drawer = ref(false)
+const fn = () => {
+  drawer.value = true
 }
 </script>
 
@@ -141,6 +147,7 @@ const onSuccess = (type) => {
           <el-link
             type="primary"
             :underline="false"
+            @click="fn"
           >
             {{ row.title }}
           </el-link>
@@ -179,8 +186,11 @@ const onSuccess = (type) => {
     style="margin-top: 20px; justify-content: flex-end"
   />
 
-  <!-- 抽屉 -->
+  <!-- 发布和编辑抽屉 -->
   <article-edit ref="articleEditRef" @success="onSuccess"></article-edit>
+
+  <!-- 文章详情抽屉 -->
+   <article-detail></article-detail>
 </page-container>
 </template>
 

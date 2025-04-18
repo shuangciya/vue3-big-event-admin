@@ -12,3 +12,14 @@ export const userLoginService = ({username,password}) => {
 
 // 获取用户基本信息
 export const userGetInfoService = () => request.get('/my/userinfo')
+
+// 更新用户基本资料
+export const userUpdateInfoService = (data) => request.put('/my/userinfo',data)
+
+// 更新用户头像
+// json格式
+// 需要base64字符串的头像
+export const userUpdateAvatarService = (avatar) => request.patch('/my/update/avatar',{ avatar })
+
+// 更新用户密码
+export const userUpdatePasswordService = (data) => request.patch('/my/updatepwd', data)

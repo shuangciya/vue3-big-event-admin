@@ -5,7 +5,7 @@ import { Plus } from "@element-plus/icons-vue";
 import { QuillEditor } from '@vueup/vue-quill'
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { artPublishService,artGetDetailService,artEditService } from "@/api/article";
-import { ElMessage } from "element-plus";
+// import { ElMessage } from "element-plus";
 import { baseURL } from "@/utils/request";
 import axios from 'axios';
 // 控制抽屉显示隐藏
@@ -101,8 +101,9 @@ const open = async (row) => {
   if(row.id) {
     // 需要基于 row.id 发送请求，获取编辑对应的详情数据，进行回显
     // console.log('编辑回显')
+    console.log(row);
     const res = await artGetDetailService(row.id)
-    // console.log(res)
+    console.log(res)
     formModel.value = res.data.data
     // 图片需要单独处理回显
     imgUrl.value = baseURL + formModel.value.cover_img
@@ -120,6 +121,9 @@ const open = async (row) => {
     // 等DOM加载完成
     await nextTick()
     editorRef.value.setHTML('')
+    // 或 if(editorRef) {
+    // editorRef.value.setHTML('')
+    // }
     // console.log('添加');
 
   }
@@ -182,7 +186,7 @@ defineExpose({
           <el-button type="info" @click="onPublish('草稿')">草稿</el-button>
         </el-form-item>
       </el-form>
-    </el-drawer>
+  </el-drawer>
 </template>
 
 <style scoped lang="scss">

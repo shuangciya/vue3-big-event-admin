@@ -21,9 +21,16 @@ const formModel = ref({
 // (3) callback 无论成功还是失败 都需要 callback 回调
 //     -callback() 校验成功
 //     -callback(new Error(错误信息)) 校验失败
+// (4) 加type 指明校验规则的类型
+    // 常见值：
+    // 'email'：验证输入是否符合邮箱格式。
+    // 'string'：验证输入是否为字符串。
+    // 'number'：验证输入是否为数字。
+    // 'url'：验证输入是否为有效的 URL。
+    // 'pattern'：使用正则表达式进行自定义验证。
 const rules ={
   username:[
-    // required: true 非空校验 ；trigger: 'blur' 触发校验的时机 失焦开始校验 change 实时校验;  message 消息提示
+    // required: true 非空校验 ；trigger: 'blur' 触发校验的时机 失焦开始校验 change 实时校验;  submit 表单提交时校验  message 消息提示
     { required: true, message: '请输入用户名', trigger: 'blur'},
     { min: 1, max: 10, message: '用户名必须是1-10位的字母数字', trigger: 'blur'
     }
@@ -118,6 +125,7 @@ const login = async() => {
             :prefix-icon="Lock"
             type="password"
             placeholder="请输入密码"
+            show-password
           ></el-input>
         </el-form-item>
         <el-form-item prop="repassword">
@@ -126,6 +134,7 @@ const login = async() => {
             :prefix-icon="Lock"
             type="password"
             placeholder="请输入再次密码"
+            show-password
           ></el-input>
         </el-form-item>
         <el-form-item>
@@ -161,6 +170,7 @@ const login = async() => {
             :prefix-icon="Lock"
             type="password"
             placeholder="请输入密码"
+            show-password
           ></el-input>
         </el-form-item>
         <el-form-item class="flex">
